@@ -80,7 +80,7 @@ static const char *tempfile = "/tmp/temp_cpp_output.txt";
 static const char *version = "1.5";
 
 
-main(int    argc,
+int main(int    argc,
      char **argv)
 {
 char        *filein, *str, *prestring, *outprotos, *protostr;

@@ -2127,7 +2127,7 @@ SARRAY             *sa;
         snprintf(buf, sizeof(buf),
                  "%d 0 obj\n"
                  "<<\n"
-                 "/Length %ld\n"
+                 "/Length %u\n"
                  "/Subtype /Image\n"
                  "%s\n"  /* colorspace */
                  "/Width %d\n"

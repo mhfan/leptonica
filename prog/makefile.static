@@ -91,6 +91,7 @@ IMAGELIB_INCL =	$(ROOT_DIR)/src
 
 
 CC =		gcc -ansi -DANSI -fPIC
+CC =		gcc -fPIC #-ansi -DANSI
 #CC =		gcc -ansi -Werror -DANSI -fPIC
 #CC =            g++ -Werror -fPIC
 

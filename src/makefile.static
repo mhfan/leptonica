@@ -108,6 +108,7 @@ PROTOTYPE_DIR =	.
 #        on whether or not NO_CONSOLE_IO has been defined.
 #     - remove -fPIC for Cygwin
 CC =		gcc -ansi -D_BSD_SOURCE -DANSI -fPIC
+CC =		gcc -D_BSD_SOURCE -fPIC #-DANSI -ansi
 #CC =		gcc -ansi -D_BSD_SOURCE -DANSI -Werror -fPIC
 #CC =		g++ -D_BSD_SOURCE -fPIC
 #CC =		g++ -Wunused -D_BSD_SOURCE -fPIC

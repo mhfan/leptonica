@@ -738,7 +738,7 @@ char            fullpath[_MAX_PATH];
         return ERROR_INT("no program chosen for display", procName, 1);
 
     pixGetDimensions(pixs, &w, &h, &d);
-    if (w <= MAX_DISPLAY_WIDTH && h <= MAX_DISPLAY_HEIGHT) {
+    if (1 || (w <= MAX_DISPLAY_WIDTH && h <= MAX_DISPLAY_HEIGHT)) {
         if (d == 16)  /* take MSB */
             pixt = pixConvert16To8(pixs, 1);
         else
@@ -805,7 +805,7 @@ char            fullpath[_MAX_PATH];
             /* no way to display title */
         pixGetDimensions(pixt, &wt, &ht, NULL);
         snprintf(buffer, L_BUF_SIZE,
-                 "xzgv --geometry %dx%d+%d+%d %s &", wt + 10, ht + 10,
+                 "display -geometry %dx%d+%d+%d %s &", wt + 10, ht + 10,
                  x, y, tempname);
     }
     ignore = system(buffer);

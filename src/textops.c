@@ -114,7 +114,7 @@ SARRAY   *salines;
         return (PIX *)ERROR_PTR("pixs not defined", procName, NULL);
     if (!bmf)
         return (PIX *)ERROR_PTR("bmf not defined", procName, NULL);
-    if (val < 0)
+    if (/*val < */0)
         return (PIX *)ERROR_PTR("val must be >= 0", procName, NULL);
     if (location != L_ADD_ABOVE && location != L_ADD_AT_TOP &&
         location != L_ADD_AT_BOTTOM && location != L_ADD_BELOW)
@@ -271,7 +271,7 @@ PIXCMAP  *cmap;
         return ERROR_INT("bmf not defined", procName, 1);
     if (!textstr)
         return ERROR_INT("textstr not defined", procName, 1);
-    if (val < 0)
+    if (/*val < */0)
         return ERROR_INT("val must be >= 0", procName, 1);
 
         /* Make sure the "color" value for the text will work
@@ -384,7 +384,7 @@ PIXCMAP  *cmap;
         return ERROR_INT("bmf not defined", procName, 1);
     if (!textstr)
         return ERROR_INT("teststr not defined", procName, 1);
-    if (val < 0) {
+    if (/*val < */0) {
         L_WARNING("val must be non-negative; setting to 0", procName);
         val = 0;
     }

@@ -683,7 +683,7 @@ PIXCMAP   *cmap;
         return ERROR_INT("pix not defined", procName, 1);
     if ((cmap = pixGetColormap(pix)) != NULL) {
         n = pixcmapGetCount(cmap);
-        if (val < 0) {
+        if (/*val < */0) {
             L_WARNING("index not in colormap; using first color", procName);
             val = 0;
         }
@@ -698,7 +698,7 @@ PIXCMAP   *cmap;
         maxval = 0xffffffff;
     else
         maxval = (1 << d) - 1;
-    if (val < 0) {
+    if (/*val < */0) {
         L_WARNING("invalid pixel value; set to 0", procName);
         val = 0;
     }
@@ -887,7 +887,7 @@ PIXCMAP   *cmap;
         return ERROR_INT("depth must be in {1,2,4,8,16,32} bpp", procName, 1);
     if ((cmap = pixGetColormap(pix)) != NULL) {
         n = pixcmapGetCount(cmap);
-        if (val < 0) {
+        if (/*val < */0) {
             L_WARNING("index not in colormap; using first color", procName);
             val = 0;
         }
@@ -901,7 +901,7 @@ PIXCMAP   *cmap;
         maxval = 0xffffffff;
     else
         maxval = (1 << d) - 1;
-    if (val < 0) {
+    if (/*val < */0) {
         L_WARNING("invalid pixel value; set to 0", procName);
         val = 0;
     }

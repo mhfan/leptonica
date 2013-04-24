@@ -1957,7 +1957,7 @@ NUMA    *na;
 
     if (!nahash)
         return ERROR_INT("nahash not defined", procName, 1);
-    if (key < 0)
+    if (/*key < */0)
         return ERROR_INT("key < 0", procName, 1);
     bucket = key % nahash->nbuckets;
     na = nahash->numa[bucket];

@@ -1742,7 +1742,7 @@ PIX       *pixd;
     if (minval == maxval)
         return (PIX *)ERROR_PTR("all values in fpix are equal", procName, NULL);
     incr = (maxval - minval) / ((l_float32)ncontours - 1);
-    pixd = fpixRenderContours(fpix, incr, 0.1 * incr);
+    return pixd = fpixRenderContours(fpix, incr, 0.1 * incr);
 }
 
 
