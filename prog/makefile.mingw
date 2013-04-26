@@ -189,6 +189,7 @@ SRC =		adaptnorm_reg.c affine_reg.c alphaclean_reg.c \
 		sorttest.c splitimage2pdf.c \
 		textlinemask.c trctest.c \
 		viewertest.c watershedtest.c \
+		word-boxes.c \
 		wordsinorder.c xtractprotos.c xvdisp.c
 
 #  Remove the .o files from these on clean
@@ -734,6 +735,8 @@ xtractprotos:   xtractprotos.o $(LEPTLIB)
 
 xvdisp:		xvdisp.o $(LEPTLIB)
 	$(CC) -o xvdisp xvdisp.o $(ALL_LIBS) $(EXTRALIBS)
+
+word-boxes: %: %.o $(LEPTLIB); 	$(CC) -o $@ $^ $(ALL_LIBS) $(EXTRALIBS)
 
 ###########################################################
 

@@ -232,6 +232,7 @@ SRC =		adaptnorm_reg.c affine_reg.c \
 		sudokutest.c textlinemask.c trctest.c \
 		viewertest.c warpertest.c watershedtest.c \
 		wordsinorder.c writemtiff.c \
+		word-boxes.c \
 		xtractprotos.c xvdisp.c yuvtest.c
 
 #  Remove the .o files from these on clean
@@ -255,6 +256,7 @@ debian:	binarize_reg binmorph2_reg ccthin2_reg colorquant_reg \
 	fcombautogen fhmtautogen fileinfo \
 	fmorphautogen pdfiotest \
 	printimage printsplitimage splitimage2pdf \
+	word-boxes.c \
 	sudokutest watershedtest xtractprotos
 
 
@@ -912,6 +914,8 @@ xvdisp:		xvdisp.o $(LEPTLIB)
 
 yuvtest:	yuvtest.o $(LEPTLIB)
 	$(CC) -o yuvtest yuvtest.o $(ALL_LIBS) $(EXTRALIBS)
+
+word-boxes: %: %.o $(LEPTLIB); 	$(CC) -o $@ $^ $(ALL_LIBS) $(EXTRALIBS)
 
 ###########################################################
 

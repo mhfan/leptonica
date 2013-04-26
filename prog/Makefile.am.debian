@@ -32,6 +32,7 @@ bin_PROGRAMS = binarize_reg \
 	splitimage2pdf \
 	sudokutest  \
 	watershedtest \
+	word-boxes \
 	xtractprotos
 
 dwamorph1_reg_SOURCES = dwamorph1_reg.c dwalinear.3.c dwalinearlow.3.c

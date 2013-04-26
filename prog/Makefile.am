@@ -91,6 +91,7 @@ bin_PROGRAMS = adaptnorm_reg affine_reg \
 	sudokutest textlinemask trctest	\
 	viewertest warpertest watershedtest \
 	wordsinorder writemtiff \
+	word-boxes \
 	xtractprotos xvdisp yuvtest
 
 dwamorph1_reg_SOURCES = dwamorph1_reg.c dwalinear.3.c dwalinearlow.3.c

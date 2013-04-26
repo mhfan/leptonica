@@ -355,7 +355,7 @@ PIX     *pixt1, *pixt2, *pixvws, *pixd;
     pixt1 = pixCloseSafeBrick(NULL, pixs, 30, 1);
     pixDisplayWrite(pixt1, debug);
     pixd = pixSubtract(NULL, pixt1, pixvws);
-    pixOpenBrick(pixd, pixd, 3, 3);
+    pixOpenBrick(pixd, pixd, 1, 1);	// XXX:
     pixDisplayWriteFormat(pixd, debug, IFF_PNG);
     pixDestroy(&pixt1);
 
