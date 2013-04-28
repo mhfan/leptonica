@@ -68,6 +68,11 @@
  *           l_int32   boxaInitFull()
  *           l_int32   boxaClear()
  *
+ *           l_int32   boxaShift()
+ *           BOX*      boxaGetBound()
+ *           l_int32   boxaSparseCompact()
+ *           l_int32   boxaSparseClearBox()
+ *
  *      Boxaa creation, copy, destruction
  *           BOXAA    *boxaaCreate()
  *           BOXAA    *boxaaCopy()
@@ -744,6 +749,88 @@ BOX  *box;
         return ERROR_INT("box not found!", procName, 1);
     boxGetGeometry(box, px, py, pw, ph);
     boxDestroy(&box);
+    return 0;
+}
+
+
+BOX* boxaGetBound(BOXA* boxa)
+{
+    l_int32 x, y, w, h;
+
+    PROCNAME("boxaGetBound");
+    if (!boxa) return ERROR_PTR("boxa not defined", procName, NULL);
+
+    if (0) {
+	BOX* box;
+	x = boxaGetCount(boxa);
+	box = boxaGetBox(boxa, x - 1, L_CLONE);
+	boxGetGeometry(box, NULL, &y, NULL, &h);
+	boxDestroy(&box);	h += y;
+
+	boxaLocationRange(boxa, &x, &y, NULL, NULL);
+	boxaSizeRange(boxa, NULL, NULL, &w, NULL);
+    } else {
+	l_int32 x0, y0, w0, h0, i, n;
+
+	w = 0, x = y = 100000000;
+	n = boxaGetCount(boxa);
+	for (i = 0; i < n; ++i) {
+	    BOX* box = boxaGetBox(boxa, i, L_CLONE);
+	    boxGetGeometry(box, &x0, &y0, &w0, &h0);
+
+	    if (x0 < x) x = x0;
+	    if (y0 < y) y = y0;
+	    if (w < w0) w = w0;
+
+	    boxDestroy(&box);
+	}   h = y0 + h0 - y;
+    }
+
+    return boxCreate(x, y, w, h);
+}
+
+l_int32 boxaShift(BOXA* boxa, l_int32 dx, l_int32 dy)
+{
+    l_int32 x, y, i, n;
+
+    PROCNAME("boxaShift");
+    if (!boxa) return ERROR_INT("boxa not defined", procName, 1);
+
+    n = boxaGetCount(boxa);
+    for (i = 0; i < n; ++i) {	BOX* box;
+	box = boxaGetBox(boxa, i, L_CLONE);
+	boxGetGeometry(box, &x, &y, NULL, NULL);
+	boxSetGeometry(box, x + dx, y + dy, -1, -1);
+	boxDestroy(&box);
+    }
+
+    return 0;
+}
+
+l_int32 boxaSparseClearBox(BOXA *boxa, l_int32 index)
+{
+    PROCNAME("boxaSparseClearBox");
+    if (!boxa) return ERROR_INT("boxa not defined", procName, 1);
+    if (index < 0 || index >= boxa->n)
+        return ERROR_INT("index not valid", procName, 1);
+
+    boxDestroy(&(boxa->box[index]));
+    boxa->box[index] = NULL;
+    return 0;
+}
+
+l_int32 boxaSparseCompact(BOXA *boxa)
+{
+    l_int32 i, j;
+
+    PROCNAME("boxaSparseCompact");
+    if (!boxa) return ERROR_INT("boxa not defined", procName, 1);
+
+    for (i = j = 0; i < boxa->n; ++i) {
+	if (i != j) boxa->box[j] = boxa->box[i];
+	if (boxa->box[j]) ++j;
+    }	boxa->n = j;
+
     return 0;
 }
 
